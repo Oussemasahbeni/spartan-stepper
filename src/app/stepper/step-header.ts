@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCircleAlert, lucidePencil } from '@ng-icons/lucide';
-import { ButtonVariants, HlmButtonImports } from '../libs/button/src';
+import { ButtonVariants, buttonVariants } from '../libs/button/src';
 import { HlmIconImports } from '../libs/icon/src';
 import { HlmStepLabel } from './step-label';
 import { HlmLabelPosition } from './stepper';
@@ -18,16 +18,16 @@ export type HlmStepperIndicatorMode = 'number' | 'state' | 'icon';
 
 @Component({
   selector: 'hlm-step-header',
-  imports: [NgTemplateOutlet, HlmIconImports, HlmButtonImports],
+  imports: [NgTemplateOutlet, HlmIconImports],
   providers: [provideIcons({ lucideCheck, lucideCircleAlert, lucidePencil })],
   template: `
-    <button hlmBtn size="icon-sm" class="rounded-full" [variant]="buttonVariant()">
+    <span aria-hidden="true" hlmBtn [class]="indicatorClass()">
       @if (iconName(); as icon) {
         <ng-icon hlm [name]="icon" size="sm" />
       } @else {
-        <span aria-hidden="true">{{ index() + 1 }}</span>
+        <span>{{ index() + 1 }}</span>
       }
-    </button>
+    </span>
 
     <span
       class="flex min-w-0 flex-col truncate text-sm font-medium"
@@ -98,6 +98,10 @@ export class HlmStepHeader extends CdkStepHeader {
 
     return 'outline';
   });
+
+  readonly indicatorClass = computed(
+    () => `${buttonVariants({ size: 'icon-sm', variant: this.buttonVariant() })}`,
+  );
 
   readonly iconName = computed(() => {
     const state = this.state();

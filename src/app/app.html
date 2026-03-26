@@ -151,11 +151,25 @@ import &#123; HlmStepperImports &#125; from '../stepper';
           <header class="space-y-1">
             <h3 class="text-xl font-semibold tracking-tight">Vertical</h3>
             <p class="text-sm text-muted-foreground">
-              Use vertical orientation when the content is denser or the viewport is narrower.
+              Use vertical orientation when content is dense or when each step panel needs more
+              inline space.
             </p>
           </header>
           <div class="rounded-2xl border bg-card p-6 shadow-sm">
             <docs-stepper-vertical-example />
+          </div>
+        </section>
+
+        <section id="responsive" class="space-y-4 scroll-mt-24">
+          <header class="space-y-1">
+            <h3 class="text-xl font-semibold tracking-tight">Responsive</h3>
+            <p class="text-sm text-muted-foreground">
+              Switches from horizontal to vertical orientation on small screens to reduce horizontal
+              overflow.
+            </p>
+          </header>
+          <div class="rounded-2xl border bg-card p-6 shadow-sm">
+            <docs-stepper-responsive-example />
           </div>
         </section>
 

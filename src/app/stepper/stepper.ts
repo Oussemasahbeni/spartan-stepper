@@ -35,7 +35,7 @@ export type HlmHeaderPosition = 'top' | 'bottom';
       @case ('vertical') {
         <div class="flex w-full flex-col gap-3">
           @for (step of steps; track step; let i = $index) {
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2">
               <ng-container
                 [ngTemplateOutlet]="stepHeaderTemplate"
                 [ngTemplateOutletContext]="{ step: step }"
@@ -44,7 +44,8 @@ export type HlmHeaderPosition = 'top' | 'bottom';
               <div class="min-h-0 overflow-hidden">
                 @if (selectedIndex === i) {
                   <section
-                    class="ms-4 border-l pl-6"
+                    class="ms-4 ps-6"
+                    [class.border-s]="!$last"
                     role="region"
                     [id]="_getStepContentId(i)"
                     [attr.aria-labelledby]="_getStepLabelId(i)"
@@ -53,6 +54,16 @@ export type HlmHeaderPosition = 'top' | 'bottom';
                   </section>
                 }
               </div>
+
+              @if (!$last) {
+                <div class="ms-4 h-6 w-px" aria-hidden="true">
+                  <span
+                    class="block h-full w-px transition-colors duration-300 motion-reduce:transition-none"
+                    [class.bg-primary]="step.index() < selectedIndex"
+                    [class.bg-border]="step.index() >= selectedIndex"
+                  ></span>
+                </div>
+              }
             </div>
           }
         </div>
@@ -76,7 +87,9 @@ export type HlmHeaderPosition = 'top' | 'bottom';
         [attr.aria-controls]="_getStepContentId(step.index())"
         [attr.aria-label]="step.ariaLabel || null"
         [attr.aria-labelledby]="!step.ariaLabel && step.ariaLabelledby ? step.ariaLabelledby : null"
-        [attr.aria-disabled]="step.isNavigable() ? null : true"
+        [attr.aria-disabled]="
+          !step.isNavigable() || (orientation === 'vertical' && step.isSelected()) ? 'true' : null
+        "
         [index]="step.index()"
         [state]="step.indicatorType()"
         [label]="step.stepLabel || step.label"
@@ -97,7 +110,8 @@ export type HlmHeaderPosition = 'top' | 'bottom';
         class="flex w-full items-center"
         role="tablist"
         aria-orientation="horizontal"
-        aria-label="Progress"
+        [attr.aria-label]="stepperAriaLabelledby() ? null : (stepperAriaLabel() ?? null)"
+        [attr.aria-labelledby]="stepperAriaLabelledby()"
       >
         @for (step of steps; track step) {
           <li class="flex min-w-0 items-center">
@@ -138,6 +152,8 @@ export class HlmStepper extends CdkStepper {
   readonly labelPosition = input<HlmLabelPosition>('end');
   readonly headerPosition = input<HlmHeaderPosition>('top');
   readonly indicatorMode = input<HlmStepperIndicatorMode>('state');
+  readonly stepperAriaLabel = input<string | null>('Progress');
+  readonly stepperAriaLabelledby = input<string | null>(null);
 
   override next(): void {
     this.selected?.stepControl?.markAllAsTouched();

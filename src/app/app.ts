@@ -4,6 +4,7 @@ import { StepperErrorExampleComponent } from './examples/stepper-error-example';
 import { StepperIndicatorsExampleComponent } from './examples/stepper-indicators-example';
 import { StepperLayoutExampleComponent } from './examples/stepper-layout-example';
 import { StepperLazyContentExampleComponent } from './examples/stepper-lazy-content-example';
+import { StepperResponsiveExampleComponent } from './examples/stepper-responsive-example';
 import { StepperRtlExampleComponent } from './examples/stepper-rtl-example';
 import { StepperStatesExampleComponent } from './examples/stepper-states-example';
 import { StepperValidationExampleComponent } from './examples/stepper-validation-example';
@@ -18,6 +19,7 @@ import { SiteHeader } from './layout/site-header';
     StepperLayoutExampleComponent,
     StepperIndicatorsExampleComponent,
     StepperRtlExampleComponent,
+    StepperResponsiveExampleComponent,
     StepperStatesExampleComponent,
     StepperValidationExampleComponent,
     StepperLazyContentExampleComponent,
