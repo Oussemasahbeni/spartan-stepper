@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
-import { lucideWorkflow } from '@ng-icons/lucide';
+import { lucideGithub, lucideWorkflow } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { ThemeSwitch } from './theme-switch';
 
 @Component({
   selector: 'app-site-header',
-  imports: [HlmSeparatorImports, HlmIconImports, ThemeSwitch],
+  imports: [HlmSeparatorImports, HlmButtonImports, HlmIconImports, ThemeSwitch],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [provideIcons({ lucideWorkflow })],
+  providers: [provideIcons({ lucideWorkflow, lucideGithub })],
   template: `
     <header
       class="bg-background/95 sticky top-0 z-30 flex h-14 w-full shrink-0 items-center justify-between gap-4 border-b px-4 backdrop-blur md:px-6"
@@ -60,6 +61,16 @@ import { ThemeSwitch } from './theme-switch';
       </div>
 
       <div class="flex items-center gap-4">
+        <a
+          href="https://github.com/Oussemasahbeni/spartan-stepper"
+          target="_blank"
+          type="button"
+          variant="outline"
+          hlmBtn
+          size="icon"
+        >
+          <ng-icon hlmIcon size="sm" name="lucideGithub" />
+        </a>
         <app-theme-switch />
       </div>
     </header>

@@ -55,7 +55,7 @@ export type HlmHeaderPosition = 'top' | 'bottom';
                 }
               </div>
 
-              @if (!$last) {
+              @if (!$last && selectedIndex !== i) {
                 <div class="ms-4 h-6 w-px" aria-hidden="true">
                   <span
                     class="block h-full w-px transition-colors duration-300 motion-reduce:transition-none"
