@@ -30,7 +30,7 @@ export type HlmStepperIndicatorMode = 'number' | 'state' | 'icon';
     </span>
 
     <span
-      class="flex min-w-0 flex-col truncate text-sm font-medium"
+      class="flex min-w-0 flex-col truncate text-sm font-medium touch-manipulation"
       [class.text-destructive]="state() === 'error'"
     >
       @if (templateLabel(); as templateLabel) {
@@ -54,7 +54,7 @@ export type HlmStepperIndicatorMode = 'number' | 'state' | 'icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class:
-      'group inline-flex shrink-0  outline-none items-center gap-2 transition-opacity data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
+      'group inline-flex shrink-0 outline-none items-center gap-2 touch-manipulation transition-opacity data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
     '[class.flex-col]': 'labelPosition() === "bottom"',
     '[class.text-center]': 'labelPosition() === "bottom"',
     '[attr.data-disabled]': 'disabled() ? "true" : null',

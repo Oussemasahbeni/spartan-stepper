@@ -7,6 +7,7 @@ import { Directive } from '@angular/core';
   host: {
     class: 'hlm-stepper-next',
     '[type]': 'type',
+    '[style.touch-action]': '"manipulation"',
   },
 })
 export class HlmStepperNext extends CdkStepperNext {}
@@ -17,6 +18,7 @@ export class HlmStepperNext extends CdkStepperNext {}
   host: {
     class: 'hlm-stepper-previous',
     '[type]': 'type',
+    '[style.touch-action]': '"manipulation"',
   },
 })
 export class HlmStepperPrevious extends CdkStepperPrevious {}

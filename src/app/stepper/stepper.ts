@@ -58,7 +58,7 @@ export type HlmHeaderPosition = 'top' | 'bottom';
               @if (!$last && selectedIndex !== i) {
                 <div class="ms-4 h-6 w-px" aria-hidden="true">
                   <span
-                    class="block h-full w-px transition-colors duration-300 motion-reduce:transition-none"
+                    class="block h-full w-px transition-colors duration-200 motion-reduce:transition-none"
                     [class.bg-primary]="step.index() < selectedIndex"
                     [class.bg-border]="step.index() >= selectedIndex"
                   ></span>
@@ -125,7 +125,7 @@ export type HlmHeaderPosition = 'top' | 'bottom';
             <li class="mx-3 flex min-w-8 flex-1 items-center" aria-hidden="true">
               <span class="bg-border relative h-px w-full overflow-hidden rounded">
                 <span
-                  class="bg-primary absolute inset-y-0 inset-s-0 transition-[width] duration-300"
+                  class="bg-primary absolute inset-y-0 inset-s-0 transition-[width] duration-200"
                   [style.width.%]="step.index() < selectedIndex ? 100 : 0"
                 ></span>
               </span>
